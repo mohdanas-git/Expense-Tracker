@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense thacker</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main-body{
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            background-color: rgb(246, 242, 242);
+            box-shadow: 2px 2px 4px grey;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        #top-form{
+            display: flex;
+            flex-direction: column;
+        }
+        .inputs{
+            width:auto;
+            margin: 8px;
+            height: 30px;
+            padding: 5px;
+        }
+        #btn{
+            background-color: rgb(82, 160, 82);
+            border: none;
+            color: white;
+            font-weight: 550;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        #btn:hover{
+            background-color: rgb(114, 180, 114);
+        }
+        #heading{
+            font-weight: bolder;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        th {
+            background-color: rgb(82, 160, 82);
+            color: white;
+            height: 30px;
+            width: 10%;
+            font-weight: 300;
+        }
+        td {
+            height: 30px;
+            width: 10%;
+            font-weight: 300;
+            padding: 8px;
+        }
+        table{
+            border-collapse: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-body">
+        <div id="top-form">
+            <div id ="heading">Expense Tracker</div>
+            <input type="text" placeholder="Expense Description" class="inputs" id="expdes">
+            <select class="inputs">
+                <option>Select Category</option>
+                <option>Electricity</option>
+                <option>Housing</option>
+                <option>Transportation</option>
+            </select>
+            <input type="number" class="inputs" placeholder="Enter Value">
+            <button type="submit" id="btn" onclick="enter();">Add Expense</button>
+    </div>
+    <div id="display">
+      <div id="heading" style="margin: 12px">Expense Summary</div>
+      <table>
+        <tr><th>Description</th><th>Category</th><th>Amount</th></tr>
+        <tbody id="explist">
+
+        </tbody>
+      </table>  
+    </div>
+    </div>
+    <script>
+        function enter() {
+  // Get input values
+  const description = document.getElementById("expdes").value;
+  const category = document.querySelector("select").value;
+  const amount = document.querySelector("input[type='number']").value;
+
+  // Validate input
+  if (!description || !category || !amount) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Create a new table row
+  const newRow = document.createElement("tr");
+  newRow.innerHTML = `
+    <td>${description}</td>
+    <td>${category}</td>
+    <td>${amount}</td>
+  `;
+
+  // Append the new row to the table body
+  document.getElementById("explist").appendChild(newRow);
+
+  // Clear the input fields
+  document.getElementById("expdes").value = "";
+  document.querySelector("select").value = "";
+  document.querySelector("input[type='number']").value = "";
+}
+    </script>
+</body>
+</html>
